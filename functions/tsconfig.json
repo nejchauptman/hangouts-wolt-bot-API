@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "noImplicitReturns": true,
+        "noUnusedLocals": true,
+        "esModuleInterop": true,
+        "outDir": "lib",
+        "sourceMap": true,
+        "strict": true,
+        "target": "ES2019",
+        "resolveJsonModule": true,
+        "allowSyntheticDefaultImports": true
+    },
+    "compileOnSave": true,
+    "include": ["src"],
+    "baseUrl": ".src/"
+}
