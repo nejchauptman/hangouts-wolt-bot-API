@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
 import Router from "express-promise-router";
 import WoltService from "../services/WoltService";
+
 const foodRouter = Router();
 
 foodRouter.get("/", async (req, res) => {

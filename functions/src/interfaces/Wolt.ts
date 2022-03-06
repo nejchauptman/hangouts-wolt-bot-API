@@ -64,7 +64,7 @@ export interface Rating {
 export interface Venue {
 	address: string;
 	badges: Badge[];
-	categories: any[];
+	categories: string[];
 	city: string;
 	currency: string;
 	delivers: boolean;

@@ -9,6 +9,7 @@ app.use(cors({ origin: true }));
 app.use(express.urlencoded({ extended: false }));
 
 const router = Router();
+
 router.use("/food", foodRouter);
 
 app.use(router);

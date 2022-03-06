@@ -10,15 +10,14 @@ export class FirebaseMapper {
 	): Promise<T[]> {
 		const payload = await object.get();
 
-		return payload.docs
-			.filter((doc) => doc.exists)
-			.map((doc) => doc.data() as T);
+		return payload.docs.filter((doc) => doc.exists).map((doc) => doc.data());
 	}
 
 	public async getDocumentMapped<T>(
 		object: DocumentReference<T>
 	): Promise<T | undefined> {
 		const payload = await object.get();
+
 		if (!payload.exists) {
 			return undefined;
 		}
@@ -29,9 +28,7 @@ export class FirebaseMapper {
 	public async getQueryMapped<T>(object: Query<T>): Promise<T[]> {
 		const payload = await object.get();
 
-		return payload.docs
-			.filter((doc) => doc.exists)
-			.map((doc) => doc.data() as T);
+		return payload.docs.filter((doc) => doc.exists).map((doc) => doc.data());
 	}
 }
 export default new FirebaseMapper();

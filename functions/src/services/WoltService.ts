@@ -50,8 +50,9 @@ class WoltService {
 				throw new Error();
 			}
 
-			const fetchedData = await response.json();
-			await WoltRepository.create(fetchedData as IWolt);
+			const fetchedData = (await response.json()) as IWolt;
+
+			await WoltRepository.create(fetchedData);
 		} catch (e) {
 			throw new Error().message;
 		}
