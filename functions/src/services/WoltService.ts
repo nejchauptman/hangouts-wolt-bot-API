@@ -1,16 +1,16 @@
 import fetch, { RequestInit } from "node-fetch";
 import TagRepository from "../repositories/TagRepository";
-import { IWolt } from "../interfaces/Wolt";
+import { IWolt, IWoltJoiner, Value } from "../interfaces/Wolt";
 import WoltRepository from "../repositories/WoltRepository";
 import FirebaseMapper from "../mappers/FirebaseMapper";
 import FoodRepository from "../repositories/FoodRepository";
 
 class WoltService {
-	public async findTags() {
+	public async findTags(): Promise<Omit<Value, "id">[]> {
 		return await FirebaseMapper.getCollectionMapped(TagRepository.findTags());
 	}
 
-	public async findFiveRandom() {
+	public async findFiveRandom(): Promise<IWoltJoiner[]> {
 		const data = await FirebaseMapper.getCollectionMapped(
 			FoodRepository.getAll()
 		);
@@ -22,20 +22,24 @@ class WoltService {
 			.slice(0, 5);
 	}
 
-	public async findAllRestaurant() {
+	public async findAllRestaurant(): Promise<IWoltJoiner[]> {
 		return await FirebaseMapper.getCollectionMapped(FoodRepository.getAll());
 	}
 
-	public async findRestaurantsMetadata() {
+	public async findRestaurantsMetadata(): Promise<IWoltJoiner[]> {
 		return await FirebaseMapper.getCollectionMapped(FoodRepository.getAll());
 	}
 
-	public async findByName(name: string) {
-		return await FirebaseMapper.getQueryMapped(FoodRepository.getByName(name));
+	public async findByName(name: string): Promise<IWoltJoiner[]> {
+		return (await FirebaseMapper.getQueryMapped(
+			FoodRepository.getByName(name)
+		)) as IWoltJoiner[];
 	}
 
-	public async findByTag(tags: string) {
-		return await FirebaseMapper.getQueryMapped(FoodRepository.getByTags(tags));
+	public async findByTag(tags: string): Promise<IWoltJoiner[]> {
+		return (await FirebaseMapper.getQueryMapped(
+			FoodRepository.getByTags(tags)
+		)) as IWoltJoiner[];
 	}
 
 	public async loadWoltDataAndBatch(): Promise<void> {

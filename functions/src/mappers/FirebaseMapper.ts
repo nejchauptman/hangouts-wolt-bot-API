@@ -4,7 +4,7 @@ import {
 	Query,
 } from "@google-cloud/firestore";
 
-export class FirebaseMapper<T> {
+export class FirebaseMapper {
 	public async getCollectionMapped<T>(
 		object: CollectionReference<T>
 	): Promise<T[]> {
