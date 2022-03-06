@@ -20,8 +20,8 @@ class FoodRepository {
 	public getByName(name: string): Query {
 		return db
 			.collection(this.collectionName)
-			.where("lowercaseName", ">=", name.toLocaleLowerCase().trim())
-			.where("lowercaseName", "<=", name.toLocaleLowerCase().trim());
+			.where("lowercaseName", ">=", name.toLocaleLowerCase())
+			.where("lowercaseName", "<=", `${name.toLowerCase()}\uf8ff`);
 	}
 
 	public getByTags(tags: string): Query {
